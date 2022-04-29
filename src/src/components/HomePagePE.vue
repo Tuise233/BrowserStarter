@@ -105,9 +105,13 @@ export default {
         document.title = "拉布拉马起始页";
 
         //判断是否是手机端
-        this.$router.push({
-            path: '/'
-        });
+        if(this.isMobile()){
+            console.log("is mobile");
+        } else {
+            this.$router.push({
+                path: '/'
+            });
+        }
 
         if(localStorage.getItem("username") != null && localStorage.getItem("password") != null){
             this.isLogin = true;
