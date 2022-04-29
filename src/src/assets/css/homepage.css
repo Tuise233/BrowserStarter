@@ -1,0 +1,319 @@
+*{
+    padding: 0;
+    margin: 0;
+    user-select: none;
+}
+
+@font-face {
+    font-family: 'PingFang';
+    src: url('../font/pingfang.ttf');
+}
+
+.container{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.pexels.com/photos/9921341/pexels-photo-9921341.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    transition: 1s all;
+}
+
+.backImg{
+    z-index: 1;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.pageTitle{
+    height: 50px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    margin-left: 16px;
+    margin-top: 16px;
+    font-family: 'PingFang';
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.pageTitle img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.pageTitle a{
+    display: inherit;
+    width: auto;
+    height: auto;
+    margin-left: 16px;
+}
+
+.pageTitle.pageTitle:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.detail{
+    position: absolute;
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
+    padding: 20px 0;
+    margin-left: 16px;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: 'PingFang';
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 1s all;
+    opacity: 0;
+}
+
+.detail a{
+    width: 90%;
+    height: auto;
+}
+
+.navBtn{
+    position: absolute;
+    top: 16px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.navBtn:hover{
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.navBtnInfo{
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    height: auto;
+    display: none;
+    flex-direction: column;
+    padding: 10px 20px;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    font-family: 'PingFang';
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 0.5s all;
+    opacity: 0;
+}
+
+.navBtnInfo a{
+    height: auto;
+    width: 100%;
+}
+
+.dailySentence{
+    z-index: 20;
+    width: auto;
+    height: 40px;
+    font-family: 'PingFang';
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    transition: 1s all;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: calc((30% - 30px));
+    opacity: 0;
+}
+
+.searchBox{
+    z-index: 9;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    top: 30%;
+    width: 600px;
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 17px;
+    transition: 0.5s all;
+}
+
+.engineHide{
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.engineHide:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.searchSelect{
+    margin-top: 180px;
+    width: 60px;
+    height: auto;
+    background-color: transparent;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition: 1s all;
+    outline: none;
+    opacity: 0;
+}
+
+.searchMaskTop{
+    z-index: 10;
+    position: absolute;
+    top: calc(30% - 180px);
+    left: calc((100% - 600px) / 2);
+    width: 60px;
+    height: 180px;
+}
+
+.searchMaskBottom{
+    z-index: 10;
+    position: absolute;
+    top: calc(30% + 60px);
+    left: calc((100% - 600px) / 2);
+    width: 60px;
+    height: 180px;
+}
+
+.searchItem{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+.searchItem img{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+.searchInput{
+    width: 560px;
+    height: 60px;
+    outline: none;
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: transparent;
+    font-size: 16px;
+    font-family: 'PingFang';
+    color: black;
+    opacity: 0;
+    transition: 1s all;
+}
+
+.searchGlass{
+    z-index: -1;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    width: 100%;
+    height: 100%;   
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    transition: 1s all;
+    opacity: 0;
+}
+
+.bottomInfo{
+    position: absolute;
+    left: calc((100% - 120px) / 2);
+    bottom: 0;
+    width: 120px;
+    height: 30px;
+    margin-bottom: 0;
+    font-family: 'PingFang';
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bottomInfo a{
+    width: auto;
+    height: auto;
+}
+
+.userInput{
+    margin-top: 10px;
+    width: 140px;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-family: 'PingFang';
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+}
+
+.userBtn,
+.logoutBtn{
+    width: 90%;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-top: 10px;
+    font-family: 'PingFang';
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.userBtn:hover,
+.logoutBtn:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.loginTip{
+    margin-top: 10px;
+    font-size: 13px;
+    transition: 0.5s all;
+}
