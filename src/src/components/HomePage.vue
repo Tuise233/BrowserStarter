@@ -66,6 +66,7 @@
         </div>
     </div>
     <div class="searchGlass" v-on:click="unfocusSearchEngine"></div>
+    <div class="loadPage"></div>
   </div>
 </template>
 
@@ -140,7 +141,12 @@ export default {
         ]
 
         var container = this.getClass("container", 0);
+        var loadPage = this.getClass("loadPage", 0);
         container.style.backgroundImage = `url('${randomBack[Math.floor(Math.random() * randomBack.length)]}')`;
+        setTimeout(() => {
+            loadPage.style.opacity = "0";
+            loadPage.style.zIndex = "-1";
+        }, 500);
     },
 
     methods: {

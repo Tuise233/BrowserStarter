@@ -65,7 +65,8 @@
             <a>By: 拉布拉马</a>
         </div>
     </div>
-    <div class="pesearchGlass" v-on:click="unfocusSearchEngine"></div> -->
+    <div class="pesearchGlass" v-on:click="unfocusSearchEngine"></div>
+    <div class="peloadPage"></div>
   </div>
 </template>
 
@@ -104,11 +105,9 @@ export default {
         document.title = "拉布拉马起始页";
 
         //判断是否是手机端
-        if(!this.isMobile()){
-            this.$router.push({
-                path: '/'
-            });
-        }
+        this.$router.push({
+            path: '/'
+        });
 
         if(localStorage.getItem("username") != null && localStorage.getItem("password") != null){
             this.isLogin = true;
@@ -138,9 +137,14 @@ export default {
             "https://images.pexels.com/photos/9921356/pexels-photo-9921356.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
             "https://images.pexels.com/photos/1252869/pexels-photo-1252869.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"            
         ]
-
+        
         var container = this.getClass("pecontainer", 0);
+        var peloadPage = this.getClass("peloadPage", 0);
         container.style.backgroundImage = `url('${randomBack[Math.floor(Math.random() * randomBack.length)]}')`;
+        setTimeout(() => {
+            peloadPage.style.opacity = "0";
+            peloadPage.style.zIndex = "-1";
+        }, 500);
     },
 
     methods: {

@@ -317,3 +317,16 @@
     font-size: 13px;
     transition: 0.5s all;
 }
+
+.loadPage{
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(70, 94, 99);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    opacity: 1;
+    transition: 1.0s all;
+}
