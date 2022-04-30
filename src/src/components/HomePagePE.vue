@@ -13,29 +13,9 @@
                 <a style="margin-top: 5px;">这是一个 <b>快速、简洁</b> 的浏览器起始页</a>
             </div>
 
-            <div class="penavBtn" v-on:click="clickNavBarBtn">
-                <i class="fa fa-sliders" aria-hidden="true"></i>
-            </div>
-
             <div class="pedailySentence">
                 <a>{{dailySentence}}</a>
                 <a style="font-size: 9px;">{{dailySentenceEng}}</a>
-            </div>
-
-           <div class="penavBtnInfo">
-                <div v-if="isLogin == true" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <a>欢迎回来，拉布拉马</a>
-                    <button class="pelogoutBtn" v-on:click="logoutUser">退出登录</button>
-                </div>
-
-                <div v-if="isLogin == false" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                    <a>请先注册或登录</a>
-                    <input class="peuserInput" type="text" v-model="username">
-                    <input class="peuserInput" type="text" v-model="password">
-                    <button class="peuserBtn" v-on:click="loginUser">登陆</button>
-                    <button class="peuserBtn" v-on:click="registerUser">注册</button>
-                    <a class="peloginTip">{{loginTip}}</a>
-                </div>
             </div>
         </div>
 
@@ -78,7 +58,6 @@ export default {
     data() {
         return {
             detailShow: false,
-            navBtnShow: false,
             searchFocus: false,
             searchEngineFocus: false,
             searchText: "",
@@ -93,11 +72,6 @@ export default {
 
             dailySentence: "",
             dailySentenceEng: "",
-
-            isLogin: false,
-            username: "",
-            password: "",
-            loginTip: "登录使用更多功能"
         }
     },
 
@@ -111,12 +85,6 @@ export default {
             this.$router.push({
                 path: '/'
             });
-        }
-
-        if(localStorage.getItem("username") != null && localStorage.getItem("password") != null){
-            this.isLogin = true;
-            this.username = localStorage.getItem("username");
-            this.password = localStorage.getItem("password");
         }
 
         axios({
@@ -175,28 +143,6 @@ export default {
                 detail.style.opacity = "0";
             }
             this.detailShow = !this.detailShow;
-        },
-
-        clickNavBarBtn: function(){
-            var btn = this.getClass("penavBtn", 0);
-            var info = this.getClass("penavBtnInfo", 0);
-            if(this.navBtnShow == false){
-                btn.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-                info.style.display = "flex";
-                setTimeout(() => {
-                    info.style.transition = "1s all";
-                    info.style.opacity = "1";
-                    this.navBtnShow = !this.navBtnShow;
-                }, 10);
-            } else {
-                btn.style.backgroundColor = "";
-                info.style.transition = "0.5s all";
-                info.style.opacity = "0";
-                setTimeout(() => {
-                    info.style.display = "none";
-                    this.navBtnShow = !this.navBtnShow;
-                }, 500);
-            }
         },
 
         onSearchEnter: function(){
@@ -312,114 +258,6 @@ export default {
                 }
             });
             window.open(url, "_self");
-        },
-        
-        sendLoginTip: function(text){
-            if(this.loginTip == "登录使用更多功能"){
-                this.loginTip = text;
-                setTimeout(() => {
-                    this.loginTip = "登录使用更多功能";
-                }, 2000);
-            }
-        },
-
-        loginUser: function(){
-            if(this.username == ""){
-                this.sendLoginTip("请输入用户名!");
-            } else if(this.password == ""){
-                this.sendLoginTip("请输入密码!");
-            } else {
-                //登录
-                axios.get(apiUrl + '/api/loginUser', {
-                    params: {
-                        username: this.username,
-                        password: this.password
-                    }
-                }).then((res) => {
-                    switch(res.data.type){
-                        case "error":
-                            this.sendLoginTip("连接服务器失败!");
-                            break;
-
-                        case "unexist":
-                            this.sendLoginTip("用户不存在!");
-                            break;
-
-                        case "incorrect":
-                            this.sendLoginTip("密码错误!");
-                            break;
-
-                        case "correct":
-                            var navInfo = this.getClass("penavBtnInfo", 0);
-                            navInfo.style.opacity = "0";
-                            setTimeout(() => {
-                                this.isLogin = true;
-                            }, 800);
-                            setTimeout(() => {
-                                navInfo.style.opacity = "1";
-                            }, 1000);
-                            localStorage.setItem("username", this.username);
-                            localStorage.setItem("password", this.password);
-                            break;
-                    }
-                });
-            }
-        },
-
-        registerUser: function(){
-            if(this.username == ""){
-                this.sendLoginTip("请输入用户名!");
-            } else if(this.password == ""){
-                this.sendLoginTip("请输入密码!");
-            } else {
-                //注册
-                axios.get(apiUrl + '/api/registerUser', {
-                    params: {
-                        username: this.username,
-                        password: this.password
-                    }
-                }).then((res) => {
-                    console.log(res.data.type);
-                    switch(res.data.type){
-                        case "error":
-                            this.sendLoginTip("连接服务器失败!");
-                            break;
-
-                        case "exist":
-                            this.sendLoginTip("用户名已注册!");
-                            break;
-
-                        case "success":
-                            var navInfo = this.getClass("penavBtnInfo", 0);
-                            navInfo.style.opacity = "0";
-                            setTimeout(() => {
-                                this.isLogin = true;
-                            }, 800);
-                            setTimeout(() => {
-                                navInfo.style.opacity = "1";
-                            }, 1000);
-                            localStorage.setItem("username", this.username);
-                            localStorage.setItem("password", this.password);
-                            break;
-                    }
-                });
-            }
-        },
-
-        logoutUser: function(){
-            if(this.username != "" && this.password != ""){
-                localStorage.clear();
-                this.username = "";
-                this.password = "";
-                var navInfo = this.getClass("penavBtnInfo", 0);
-                navInfo.style.opacity = "0";
-                setTimeout(() => {
-                    this.isLogin = false;
-                }, 800);
-                setTimeout(() => {
-                    navInfo.style.opacity = "1";
-                }, 1000);
-            }
         }
     },
 }
