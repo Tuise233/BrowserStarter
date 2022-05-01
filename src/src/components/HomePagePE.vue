@@ -53,7 +53,7 @@
 <script>
 import axios from 'axios';
 
-let apiUrl = "http://web.tuise233.cn:8081";
+let apiUrl = "https://web.tuise233.cn:8081";
 export default {
     data() {
         return {
