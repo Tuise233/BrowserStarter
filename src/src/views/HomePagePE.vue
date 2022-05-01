@@ -78,14 +78,14 @@ export default {
     created() {
         document.title = "拉布拉马起始页";
 
-        //判断是否是手机端
-        if(this.isMobile()){
-            console.log("is mobile");
-        } else {
-            this.$router.push({
-                path: '/'
-            });
-        }
+        // //判断是否是手机端
+        // if(this.isMobile()){
+        //     console.log("is mobile");
+        // } else {
+        //     this.$router.push({
+        //         path: '/'
+        //     });
+        // }
 
         axios({
             method: "GET",
