@@ -1,14 +1,20 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import HomePage from './components/HomePage';
-import HomePagePE from './components/HomePagePE';
+import Home from './views/Home';
+import HomePage from './views/HomePage';
+import HomePagePE from './views/HomePagePE';
 
 Vue.use(VueRouter);
 
 const routes = [
     {
       path: '/',
+      name: 'Home',
+      component: Home
+    },
+    {
+      path: '/pc',
       name: 'HomePage',
       component: HomePage
     },
@@ -20,7 +26,6 @@ const routes = [
   ]
   
 const router = new VueRouter({
-    mode: 'history',
     routes
 });
 

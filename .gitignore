@@ -1,12 +1,3 @@
 webapi/node_modules/
 src/node_modules/
-src/dist/css/app.1040f44f.css
-src/dist/js/app.2fd8da8b.js
-src/dist/js/app.2fd8da8b.js.map
-src/dist/js/app-legacy.5150ec36.js
-src/dist/js/app-legacy.5150ec36.js.map
-src/dist/css/app.3a6a3e0c.css
-src/dist/js/app.fbfe6c8f.js
-src/dist/js/app.fbfe6c8f.js.map
-src/dist/js/app-legacy.30ed70aa.js
-src/dist/js/app-legacy.30ed70aa.js.map
+src/dist/
