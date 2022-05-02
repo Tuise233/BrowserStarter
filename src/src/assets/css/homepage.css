@@ -287,3 +287,66 @@
     opacity: 1;
     transition: 1.0s all;
 }
+
+.dataId{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-family: "pingfang";
+    color: white;
+    font-size: 14px;
+}
+
+.dataId span{
+    cursor: pointer;
+}
+
+.favContainer{
+    z-index: 11;
+    width: 600px;
+    height: 180px;
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: 40%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s all;
+    opacity: 1;
+}
+
+.favRow{
+    width: 100%;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.favItem{
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin: 0 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "pingfang";
+    color: white;
+    font-size: 12px;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+}
+
+.favItem img{
+    width: 25px;
+    height: 25px;
+    margin-bottom: 5px;
+}   

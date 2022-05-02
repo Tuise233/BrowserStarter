@@ -13,10 +13,15 @@
                 <a style="margin-top: 10px;">这是一个 <b>快速、简洁</b> 的浏览器起始页</a>
             </div>
 
-            <div class="dailySentence">
-                <a>{{dailySentence}}</a>
-                <a style="font-size: 13px;">{{dailySentenceEng}}</a>
+            <div class="dataId">
+            您的数据ID: 
+            <span class="dataString" v-on:click="onClickData">{{dataid}}</span>
             </div>
+        </div>
+
+        <div class="dailySentence">
+            <a>{{dailySentence}}</a>
+            <a style="font-size: 13px;">{{dailySentenceEng}}</a>
         </div>
 
         <div class="searchBox" @mouseenter="onSearchEnter" @mouseleave="onSearchOut">
@@ -36,6 +41,45 @@
             </div>
             
             <input class="searchInput" type="text" v-model="searchText" @focus="onSearchFocus" @blur="onSearchUnfocus" v-on:keyup.enter="engineSearch">
+        </div>
+
+        <div class="favContainer">
+            <div v-if="favList[0].length != 0" class="favRow">
+                <div class="favItem" v-for="(item,index) in favList[0]" :key="index">
+                    <img :src="item.pic">
+                    <span>{{item.name}}</span>
+                </div>
+            </div>
+
+            <div v-if="favList[1].length != 0" class="favRow">
+                <div class="favItem" v-for="(item,index) in favList[1]" :key="index">
+                    <img :src="item.pic">
+                    <span>{{item.name}}</span>
+                </div>
+            </div>
+            <!-- <div class="favRow">
+                <div class="favItem">
+                    <img src="../assets/img/bilibili.png">
+                    <span>Bilibili</span>
+                </div>
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+            </div>
+
+            <div class="favRow">
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+                <div class="favItem"></div>
+                <div class="favItem">
+                    <img src="../assets/img/addon.png">
+                    <span>新增</span>
+                </div>
+            </div> -->
         </div>
 
         <div class="searchMaskTop"></div>
@@ -72,18 +116,25 @@ export default {
 
             dailySentence: "",
             dailySentenceEng: "",
+            
+            dataid: "",
+            favList: [
+                [
+                    {
+                    "name": "BiliBili",
+                    "pic": require("../assets/img/bilibili.png"),
+                    "url": "http://www.bilibili.com"
+                    }
+                ],
+                [
+
+                ]
+            ]
         }
     },
 
     created() {
         document.title = "拉布拉马起始页";
-
-        // //判断是否是手机端
-        // if(this.isMobile()){
-        //     this.$router.push({
-        //         path: '/pe'
-        //     });
-        // }
 
         axios({
             method: "GET",
@@ -95,6 +146,40 @@ export default {
             var dailySentence = this.getClass("dailySentence", 0);
             dailySentence.style.opacity = "1";
         });
+
+        //判断是否拥有数据ID
+        if(localStorage.getItem("dataid") == null){
+            let dataid = Math.random().toString(36).substr(2);
+            localStorage.setItem("dataid", dataid);
+            this.dataid = dataid;
+            axios({
+                method: "GET",
+                params: {
+                    dataid: dataid
+                },
+                url: apiUrl + "/api/createDataId"
+            });
+        } else {
+            this.dataid = localStorage.getItem("dataid");
+        }
+
+        //填充新增
+        var favCount = this.favList[0].length + this.favList[1].length;
+        if(favCount <= 6){
+            if(favCount < 6){
+                this.favList[0].push({
+                    name: "新增",
+                    pic: require("../assets/img/addon.png"),
+                    url: ""
+                })
+            } else {
+                this.favList[1].push({
+                    name: "新增",
+                    pic: require("../assets/img/addon.png"),
+                    url: ""
+                })
+            }
+        }
     },
 
     mounted() {
@@ -197,6 +282,10 @@ export default {
                 this.searchEngineFocus = true;
                 this.onSearchFocus();
                 this.onSearchEngineFocus();
+
+                var fav = this.getClass("favContainer", 0);
+                fav.style.opacity = "0";
+                fav.style.zIndex = "0";
             }
 
             //切换元素
@@ -222,6 +311,10 @@ export default {
                 this.searchEngineFocus = false;
                 this.onSearchUnfocus();
                 this.onSearchEngineUnfocus();
+
+                var fav = this.getClass("favContainer", 0);
+                fav.style.opacity = "1";
+                fav.style.zIndex = "11";
             }
         },
 
@@ -255,6 +348,16 @@ export default {
                 }
             });
             window.open(url, "_self");
+        },
+
+        onClickData: function(){
+            var input = document.createElement("input");
+            input.value = this.dataid;
+            document.body.appendChild(input);
+            input.select();
+            document.execCommand("Copy");
+            document.body.removeChild(input);
+            alert("成功复制数据ID，请及时保存");
         }
     },
 }
