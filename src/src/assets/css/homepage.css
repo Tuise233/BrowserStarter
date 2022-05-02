@@ -315,7 +315,7 @@
     justify-content: space-between;
     align-items: center;
     transition: 0.5s all;
-    opacity: 1;
+    opacity: 0;
 }
 
 .favRow{
@@ -329,7 +329,7 @@
 .favItem{
     width: 70px;
     height: 70px;
-    background-color: rgba(255, 255, 255, 0.3);
+    /* background-color: rgba(255, 255, 255, 0.3); */
     margin: 0 15px;
     border-radius: 5px;
     display: flex;
@@ -339,6 +339,7 @@
 
     font-family: "pingfang";
     color: white;
+    font-weight: 550;
     font-size: 12px;
     letter-spacing: 1px;
 
@@ -348,5 +349,161 @@
 .favItem img{
     width: 25px;
     height: 25px;
+    padding: 10px;
+    border-radius: 5px;
     margin-bottom: 5px;
-}   
+}
+
+.prevImage{
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.prevText{
+    font-size: 25px;
+    margin-bottom: 5px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.addFavContainer{
+    z-index: -1;
+    width: 300px;
+    height: 680px;
+    position: absolute;
+    transform: translate(-50%, 0);
+    left: 50%;
+    top: 10%;
+    background-color: #3b3b44;
+    opacity: 1;
+    transition: 1s all;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: "pingfang";
+    color: white;
+    padding: 0 20px;
+    transition: 0.5s all;
+    opacity: 0;
+}
+
+.addFavContainer span{
+    font-size: 13px;
+    margin-left: -250px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.addFavContainer input{
+    width: 270px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #2f2f37;
+    border: 1px solid #1c1c21;
+    padding: 0 20px;
+    outline: none;
+    color: #888;
+}
+
+.addIconBtn{
+    height: 45px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #2f2f37;
+    border: none    ;
+    font-family: "pingfang";
+    color: white;
+    font-size: 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 1.0s all;
+}
+
+.addIconBtn:hover{
+    background-color: #25252b;
+}
+
+.addPreview{
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    background-color: #2f2f37;
+    border: 1px solid #1c1c21;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.previewItem{
+    width: 70px;
+    height: 70px;
+    margin: 0 15px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    font-family: "pingfang";
+    color: white;
+    font-weight: 550;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.previewItem img{
+    width: 25px;
+    height: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: white;
+}
+
+.applyAddBtn{
+    margin-top: 20px;
+    margin-left: 240px;
+    width: 70px;
+    height: 35px;
+    border-radius: 5px;  
+    background-color: #2f2f37;
+    border: none    ;
+    font-family: "pingfang";
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 1.0s all;
+    outline: none;
+}
+
+.applyAddBtn:hover{
+    background-color: #25252b;
+}
+
+.disableScroll::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+ 
+.disableScroll[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.closeBtn{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -5px;
+    margin: 20px;
+    cursor: pointer;
+    outline: none;
+}
