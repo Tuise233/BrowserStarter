@@ -18,7 +18,7 @@ var httpsServer = https.createServer(credentials, app);
 
 
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false, limit: '1000000kb' }));
 app.use('/api', mainRouter);
 
 httpsServer.listen(8081);
