@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { executeReader, executeQuery } = require('../util/database');
+const { executeReader, executeQuery, executeInsert } = require('../util/database');
 
 router.post('/createFav', (req, res) => {
     try{
