@@ -1,32 +1,27 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from './views/Home';
-import HomePage from './views/HomePage';
-import HomePagePE from './views/HomePagePE';
+import PcHome from '@/views/PcHome.vue';
+import PeHome from '@/views/PeHome.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
-    {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/pc',
-      name: 'HomePage',
-      component: HomePage
-    },
-    {
-      path: '/pe',
-      name: 'HomePagePE',
-      component: HomePagePE
-    },
-  ]
+	{
+		path: "/pc",
+		name: "PcHome",
+		component: PcHome
+	},
+	{
+		path: "/pe",
+		name: "PeHome",
+		component: PeHome
+	}
+]
   
 const router = new VueRouter({
-    routes
+    routes,
+    mode: "history"
 });
 
 export default router;
